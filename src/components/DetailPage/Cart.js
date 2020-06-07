@@ -1,10 +1,11 @@
 import React from "react";
 export default function Cart(props) {
+  const { price,status } = props.item;
   return (
     <div>
       <ul>
-        <li>Price: {props.item.price}</li>
-        <li>Status: {props.item.status}</li>
+        <li>Price: {price}</li>
+        <li>Status: {status}</li>
         <li>
           number
           <select>

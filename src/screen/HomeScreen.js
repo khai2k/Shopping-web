@@ -1,28 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles.css";
 import Item from "../components/Item";
-import data from "../data";
 import axios from "axios";
-export default function HomeScreen(props) {
-  // const [product, setproduct]= useState([]);
-  // useEffect(()=>
-  //   const fetchdata =()=>{
-  //     const {data}= await axios.get("http://localhost:4000/product/")
-  //     setproduct(data);
-  //   }
-  // )
-  // const {data}= aw a
+export function HomeScreen(props) {
 
-  axios.get("http://localhost:4000/product/").then(function(response) {
-    // handle success
-    console.log(response);
-  });
+  const [product, setProduct] = useState([]);
+  useEffect(() => {
+    console.log('useEffectuseEffectuseEffect')
+    const fetchdata = async () => {
+      const { data } = await axios.get("http://localhost:4000/product/")
+      setProduct(data)
+    }
+    if (product.length == 0) {
+      fetchdata();
+    }
+  })
+  console.log(product)
 
   return (
     <ul className="products">
-      {data.products.map(product => (
-        <Item item={product} />
+      {product.map(product => (
+        <Item key={product._id} item={product} />
       ))}
     </ul>
   );
 }
+class HomeScreen2 extends React.PureComponent  {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     product: []
+  //   }
+  // }
+  // async componentDidMount() {
+  //   console.log('componentDidMount')
+  //   // const { data } = await axios.get("http://localhost:4000/product/")
+  //   // this.setState({
+  //   //   product: data
+  //   // })
+  // }
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate')
+  // }
+  // componentWillUpdate(){
+  //   console.log('componentWillUpdate')
+  // }
+
+  render() {
+    console.log('render functin')
+    console.log('render functin2')
+    return (
+      // <ul className="products">
+      //   {this.state.product.map(product => (
+      //     <Item key={product._id} item={product} />
+      //   ))}
+      // </ul>
+      <div>asdfsdf</div>
+    );
+  }
+}
+export default HomeScreen2
