@@ -1,17 +1,21 @@
 import React from "react";
 // import "./styles.css";
-
+import {Link} from "react-router-dom"
 export default function Item(props) {
+  const { item } = props
   return (
     <li>
       <div className="product">
-        <img className="product-image" src="images/d1.jpg" alt="product" />
+        <Link to = {{pathname:"/product/"+item._id,
+                      state:{product:item}
+        }}>
+          <img className="product-image" src={item.image} alt="product" />
+        </Link>
         <div className="product-name">
-          <a href="product.html">Slim Shirt</a>
+          <a href="product.html">{item.name}</a>
         </div>
-        <div className="product-brand">Nike</div>
-        <div className="product-price">$60</div>
-        <div className="product-rating">4.5 Stars (10 Reviews)</div>
+        <div className="product-brand">{}</div>
+        <div className="product-price">${item.price}</div>
       </div>
     </li>
   );
